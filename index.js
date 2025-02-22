@@ -8,14 +8,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
     const imageContainer = generateImageContainer({ 
       id: id,
 	  isSelected: false,
-      image: imageData.images[id],
       onClick: (e) => {
         const overlay = document.getElementById("overlay");
 
         const selectedImageContainer = generateImageContainer({
           id: id,
 		  isSelected: true,
-          image: imageData.images[id],
           onClick: (e) => {
             overlay.style.display = 'none';
 			overlay.removeChild(selectedImageContainer);
@@ -31,7 +29,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
     imageGrid.appendChild(imageContainer);
   });
 
-  function generateImageContainer({id, isSelected, image, onClick}) {		
+  function generateImageContainer({id, isSelected, onClick}) {	
+	const image = imageData.images[id];	
     const dogId = `dog_${id}`;
 
     const imageContainer = document.createElement("div");
