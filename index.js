@@ -1,23 +1,51 @@
+/* Init state */
 const imageIds = Object.keys(imageData.images).sort();
 
 window.addEventListener('DOMContentLoaded', (event) => {
-	const imageGrid = document.getElementById("image-grid");
+  const imageGrid = document.getElementById("image-grid");
 
-	imageIds.forEach(id => {
-		image = imageData.images[id];
+  imageIds.forEach(id => {
+    const imageContainer = generateImageContainer({ 
+      id: id,
+	  isSelected: false,
+      image: imageData.images[id],
+      onClick: (e) => {
+        const overlay = document.getElementById("overlay");
 
-		const imageContainer= document.createElement("div");
-		imageContainer.classList.add("image");
+        const selectedImageContainer = generateImageContainer({
+          id: id,
+		  isSelected: true,
+          image: imageData.images[id],
+          onClick: (e) => {
+            overlay.style.display = 'none';
+			overlay.removeChild(selectedImageContainer);
+          }
+        });
 
-		const img = document.createElement("img");
-		img.src = getImgUrl(id);
-		img.alt = image.alt;
-		imageContainer.appendChild(img);
+        overlay.appendChild(selectedImageContainer);
 
-		imageGrid.appendChild(imageContainer);
-	});
+		overlay.style.display = 'block';
+      }
+    });
+
+    imageGrid.appendChild(imageContainer);
+  });
+
+  function generateImageContainer({id, isSelected, image, onClick}) {		
+    const dogId = `dog_${id}`;
+
+    const imageContainer = document.createElement("div");
+    imageContainer.classList.add("image");
+    imageContainer.id = isSelected ? 'selected-image' : dogId;
+
+    imageContainer.addEventListener("click", onClick);
+
+    const img = document.createElement("img");
+    img.src = `${imageData.root}/${dogId}.jpg`;
+    img.alt = image.alt;
+
+    imageContainer.appendChild(img);
+
+    return imageContainer;
+  }
 });
-
-function getImgUrl(imageId) {
-	return `${imageData.root}/dog_${imageId}.jpg`;
-}
