@@ -1,11 +1,9 @@
-.site-container {
-	width: 100%;
+body {
+	margin: 0;
 }
 
-.main-container {
-	display: grid;
-	grid-template-columns: 1fr 600px 1fr; /* Middle column fixed at 300px, others flexible */
-	height: 100vh; /* Optional: Makes it fill the viewport */
+.site-container {
+	width: 100%;
 }
 
 .image-grid-container {
@@ -20,3 +18,20 @@
   height: 100%;
   object-fit: cover; /* or "contain" */
 } 
+
+.sidebar {
+	display: none;
+}
+
+/* Screens 600px or wider */
+@media (min-width: 600px) {
+	.main-container {
+		display: grid;
+		grid-template-columns: 1fr 600px 1fr; /* Middle column fixed at 600px, others flexible */
+		height: 100vh; /* Optional: Makes it fill the viewport */
+	}
+
+	.sidebar {
+		display: block;
+	}
+}

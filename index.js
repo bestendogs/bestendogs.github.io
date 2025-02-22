@@ -1,11 +1,11 @@
 const imageIds = Object.keys(imageData.images).sort();
-console.log(imageIds);
+
 window.addEventListener('DOMContentLoaded', (event) => {
 	const imageGrid = document.getElementById("image-grid");
 
 	imageIds.forEach(id => {
 		image = imageData.images[id];
-		console.log(id);
+
 		const imageContainer= document.createElement("div");
 		imageContainer.classList.add("image");
 
