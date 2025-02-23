@@ -7,22 +7,23 @@ window.addEventListener('DOMContentLoaded', (event) => {
   imageIds.forEach(id => {
     const imageContainer = generateImageContainer({ 
       id: id,
-	  isSelected: false,
+	    isSelected: false,
       onClick: (e) => {
         const overlay = document.getElementById("overlay");
-
+        overlay.innerHTML = '';
+        
         const selectedImageContainer = generateImageContainer({
           id: id,
-		  isSelected: true,
+		      isSelected: true,
           onClick: (e) => {
             overlay.style.display = 'none';
-			overlay.removeChild(selectedImageContainer);
+			      overlay.removeChild(selectedImageContainer);
           }
         });
 
         overlay.appendChild(selectedImageContainer);
 
-		overlay.style.display = 'block';
+		    overlay.style.display = 'block';
       }
     });
 
