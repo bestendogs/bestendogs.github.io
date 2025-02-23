@@ -1,19 +1,18 @@
-/* Init state */
-const imageIds = Object.keys(imageData.images).sort();
-
 window.addEventListener('DOMContentLoaded', (event) => {
   const imageGrid = document.getElementById("image-grid");
+  const cutoffLength = imageData.images.length - (imageData.images.length % 3);
+  const filteredImages = imageData.images.slice(0, cutoffLength);
 
-  imageIds.forEach(id => {
+  filteredImages.forEach(image => {
     const imageContainer = generateImageContainer({ 
-      id: id,
+      image,
 	    isSelected: false,
       onClick: (e) => {
         const overlay = document.getElementById("overlay");
         overlay.innerHTML = '';
         
         const selectedImageContainer = generateImageContainer({
-          id: id,
+          image,
 		      isSelected: true,
           onClick: (e) => {
             overlay.style.display = 'none';
@@ -30,18 +29,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
     imageGrid.appendChild(imageContainer);
   });
 
-  function generateImageContainer({id, isSelected, onClick}) {	
-	const image = imageData.images[id];	
-    const dogId = `dog_${id}`;
-
+  function generateImageContainer({image, isSelected, onClick}) {	
     const imageContainer = document.createElement("div");
     imageContainer.classList.add("image");
-    imageContainer.id = isSelected ? 'selected-image' : dogId;
+    imageContainer.id = isSelected ? 'selected-image' : image.dogId;
 
     imageContainer.addEventListener("click", onClick);
 
     const img = document.createElement("img");
-    img.src = `${imageData.root}/${dogId}.jpg`;
+    img.src = `${imageData.root}/${image.dogId}.jpg`;
     img.alt = image.alt;
 
     imageContainer.appendChild(img);
