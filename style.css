@@ -29,6 +29,10 @@ body {
   object-fit: cover; /* or "contain" */
 } 
 
+.flipped {
+	transform: scaleY(-1) scaleX(-1);
+}
+
 .sidebar {
 	display: none;
 }
