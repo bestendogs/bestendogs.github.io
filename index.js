@@ -58,7 +58,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             img.classList.toggle('flipped');
           }
           clickCount = 0;
-        }, 300); // Timeout for double-click detection
+        }, 250); // Timeout for double-click detection
       }
     });
 
