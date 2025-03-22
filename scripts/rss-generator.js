@@ -12,8 +12,8 @@ const rss = create({ version: '1.0' })
 
 data.images.forEach(image => {
   rss.ele('item')
-    .ele('title').txt(`Image ${image.id}`).up()
-    .ele('link').txt(`${data.root}/images/${image.dogId}`).up()
+    .ele('title').txt(`Dog Image ${image.id}`).up()
+    .ele('link').txt(`${data.root}/${image.dogId}.jpg`).up()
     .ele('description').txt(image.alt).up()
     .ele('guid').txt(image.dogId).up()
     .ele('pubDate').txt(new Date().toUTCString()).up()
