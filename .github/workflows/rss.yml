@@ -1,0 +1,34 @@
+name: Generate RSS
+
+on:
+  push:
+    branches:
+      - main  # Trigger only when changes are pushed to main
+    paths:
+      - 'image-data.js'  # Adjust this if your data file is in a different location
+  workflow_dispatch:  # Allows manual triggering if needed
+
+jobs:
+  update-rss:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install xmlbuilder2  # Install XML builder for RSS
+
+      - name: Generate RSS
+        run: node scripts/rss-generator.js  # Ensure the script is in /scripts/
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add rss.xml
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update RSS feed" && git push)
