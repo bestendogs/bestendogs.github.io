@@ -9,11 +9,12 @@ const rss = create({ version: '1.0' })
     .ele('title').txt('Dog Images Feed').up()
     .ele('link').txt(`${data.root}/rss.xml`).up()
     .ele('description').txt('Latest dog images').up();
-
 data.images.forEach(image => {
+  const imageLink = `${data.root}/${image.dogId}.jpg`;
   rss.ele('item')
     .ele('title').txt(`Dog Image ${image.id}`).up()
-    .ele('link').txt(`${data.root}/${image.dogId}.jpg`).up()
+    .ele('link').txt(imageLink).up()
+    .ele('content').txt(`<img src="${imageLink}" alt="${image.alt}" />`).up()
     .ele('description').txt(image.alt).up()
     .ele('guid').txt(image.dogId).up()
     .ele('pubDate').txt(new Date().toUTCString()).up()

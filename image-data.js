@@ -595,12 +595,6 @@ const imageData = {
       "dogId": "dog_098",
       "alt": "Dog Image"
     },
-    {
-      "id": 100,
-      "order": 99,
-      "dogId": "dog_099",
-      "alt": "Dog Image"
-    },
   ]
 }
 
