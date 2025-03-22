@@ -595,36 +595,6 @@ const imageData = {
         "dogId": "dog_098",
         "alt": "Dog Image"
       },
-      {
-        "id": 100,
-        "order": 99,
-        "dogId": "dog_099",
-        "alt": "Dog Image"
-      },
-      {
-        "id": 101,
-        "order": 100,
-        "dogId": "dog_100",
-        "alt": "Dog Image"
-      },
-      {
-        "id": 102,
-        "order": 101,
-        "dogId": "dog_101",
-        "alt": "Dog Image"
-      },
-      {
-        "id": 103,
-        "order": 102,
-        "dogId": "dog_102",
-        "alt": "Dog Image"
-      },
-      {
-        "id": 104,
-        "order": 103,
-        "dogId": "dog_103",
-        "alt": "Dog Image"
-      }
     ]
   }
   
