@@ -1,7 +1,7 @@
 const fs = require('fs');
 const { create } = require('xmlbuilder2');
 
-const data = require('./image-data.js'); // Adjust the path to your JS data file
+const data = require('../image-data.js'); // Adjust the path to your JS data file
 
 const rss = create({ version: '1.0' })
   .ele('rss', { version: '2.0' })
