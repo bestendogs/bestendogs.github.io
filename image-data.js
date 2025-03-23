@@ -1,5 +1,5 @@
 const imageData = {
-  "root": "https://bestendogs.b-cdn.net",
+  "root": "https://images.bestendogs.rip",
   "images": [
     {
       "id": 1,
