@@ -17,9 +17,9 @@ const rss = create({ version: '1.0' })
     rss.ele('item')
       .ele('title').txt(`Dog Image ${image.id}`).up()
       .ele('link').txt(imageLink).up()
-      .ele('guid', { isPermaLink: 'false' }).txt(image.dogId).up()
+      .ele('guid', { isPermaLink: 'false' }).txt(imageLink).up()
       .ele('description').txt(image.alt).up()
-      .ele('content:encoded').raw(`<![CDATA[<img src="${imageLink}" alt="${image.alt}" />]]>`).up()
+      .ele('content:encoded').dat(`<img src="${imageLink}" alt="${image.alt}" />`).up() // Use .dat() for CDATA
       .ele('pubDate').txt(new Date().toUTCString()).up()
       .up();
   });
