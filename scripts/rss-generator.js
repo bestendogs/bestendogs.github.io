@@ -12,17 +12,17 @@ const rss = create({ version: '1.0' })
     .ele('link').txt(`https://bestendogs.rip/rss.xml`).up()
     .ele('description').txt('Latest dog images').up();
 
-data.images.forEach(image => {
-  const imageLink = `${data.root}/${image.dogId}.jpg`;
-  rss.ele('item')
-    .ele('title').txt(`Dog Image ${image.id}`).up()
-    .ele('link').txt(imageLink).up()
-    .ele('guid', { isPermaLink: 'false' }).txt(image.dogId).up()
-    .ele('description').txt(image.alt).up()
-    .ele('content:encoded').txt(`<![CDATA[<img src="${imageLink}" alt="${image.alt}" />]]>`).up()
-    .ele('pubDate').txt(new Date().toUTCString()).up()
-    .up();
-});
+  data.images.forEach(image => {
+    const imageLink = `${data.root}/${image.dogId}.jpg`;
+    rss.ele('item')
+      .ele('title').txt(`Dog Image ${image.id}`).up()
+      .ele('link').txt(imageLink).up()
+      .ele('guid', { isPermaLink: 'false' }).txt(image.dogId).up()
+      .ele('description').txt(image.alt).up()
+      .ele('content:encoded').raw(`<![CDATA[<img src="${imageLink}" alt="${image.alt}" />]]>`).up()
+      .ele('pubDate').txt(new Date().toUTCString()).up()
+      .up();
+  });
 
 fs.writeFileSync('rss.xml', rss.end({ prettyPrint: true }));
 console.log('RSS feed updated!');
